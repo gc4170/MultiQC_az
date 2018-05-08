@@ -9,10 +9,15 @@
       "rnaseq_az", "featureCounts", "salmon", "star", "tophat",
       "bcbio-mirs", "bcbio-isomirs"]) %}
 
+{%set qc_group = dict(id = "qc", title = "Quality Control", anchors = ["RNAseqQC"])%}
+{%set de_group = dict(id = "de", title = "Differential Expression", anchors = ["RNAseqDE"])%}
+{%set fa_group = dict(id = "fa", title = "Functional Analysis", anchors = ["RNAseqFA"])%}
 
 
 {% set groups = [
-  alignstats_group,  
+  alignstats_group,
+  qc_group,de_group,fa_group,
+  
   dict(
     id="umi",
     title="UMI",
@@ -63,7 +68,5 @@
 {% if config.az and config.az.prealign %}
   {% set alignstats_group = prealign_alignstats_group %}
   {% set groups = prealign_groups %}
-  {%set qc_group = dict(id = "qc", title = "Quality Control", anchors = ["RNAseqQC"])%}
-  {%set de_group = dict(id = "de", title = "Differential Expression", anchors = ["RNAseqDE"])%}
-  {%set fa_group = dict(id = "fa", title = "Functional Analysis", anchors = ["RNAseqFA"])%}
+
 {% endif %}
